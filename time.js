@@ -50,7 +50,7 @@ const getLaTime = stamp => {
   }
   laTime = today - 32400000; // - 9hrs en ms
   return laTime;
-}
+};
 
 const week = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
 const months = ['décembre', 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août',
@@ -58,7 +58,9 @@ const months = ['décembre', 'janvier', 'février', 'mars', 'avril', 'mai', 'jui
 const getDate = stamp => {
   const day = week[new Date(stamp).getDay()];
   const date = new Date(stamp).toLocaleString('fr-FR').split(' ')[0];
-  const month = months[date.split('/')[1].slice(1)];
+  const month = months[date.split('/')[1]].slice(0) === 0 ?
+    months[date.split('/')[1]].slice(1) :
+    months[date.split('/')[1]];
   const dateString = `${day} ${date.split('/')[0]} ${month} ${date.split('/')[2]}`;
   return dateString;
 };
